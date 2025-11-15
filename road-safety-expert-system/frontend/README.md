@@ -1,16 +1,67 @@
-# React + Vite
+# Frontend: Road Safety Intervention GPT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the complete source code for the user-facing interface of the Road Safety Intervention GPT. This application is built as a modern, responsive Single-Page Application (SPA) using React and Vite.
 
-Currently, two official plugins are available:
+## 📜 Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend provides an intuitive and professional interface for users to describe road safety issues in natural language. It communicates with a dedicated backend server to receive AI-powered analysis and recommendations. The results are then displayed in a beautifully formatted, easy-to-understand "Intervention Report."
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Intuitive User Interface:** A clean, minimalist design focused on ease of use, allowing anyone to quickly describe a problem and get a solution.
+-   **Real-time AI Analysis:** Seamlessly communicates with the backend to provide AI-generated reports without leaving the page.
+-   **Professional Report Display:** Renders the AI's response in a structured, credible `ReportCard` format, complete with official references.
+-   **Advanced Shareability:**
+    -   Generates a unique, shareable link for each report.
+    -   Displays a scannable QR code for easy access on mobile devices.
+-   **Client-Side Routing:** Utilizes `react-router-dom` to handle dedicated, shareable report pages.
+-   **Polished User Experience:** Includes loading skeletons and clear error messages to keep the user informed at every step.
+-   **Fully Responsive:** Built with Tailwind CSS for a flawless experience on desktop, tablet, and mobile devices.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   **Framework:** [React](https://reactjs.org/)
+-   **Build Tool:** [Vite](https://vitejs.dev/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Routing:** [React Router DOM](https://reactrouter.com/)
+-   **QR Code Generation:** [qrcode](https://www.npmjs.com/package/qrcode)
+
+## 🚀 Getting Started
+
+Follow these instructions to get the frontend development server running on your local machine.
+
+### Prerequisites
+
+-   [Node.js](https://nodejs.org/) (version 18.x or higher is recommended)
+-   The [backend server](../backend/) for this project **must be running** first.
+
+### Installation & Setup
+
+1.  **Navigate to the frontend directory:**
+    From the project's root folder, open your terminal and run:
+    ```bash
+    cd frontend
+    ```
+
+2.  **Install NPM packages:**
+    This will install all the necessary dependencies listed in `package.json`.
+    ```bash
+    npm install
+    ```
+
+### Running the Application
+
+1.  **Start the backend server:**
+    Open a **separate terminal**, navigate to the `backend` directory, and run `node server.js`.
+
+2.  **Start the frontend development server:**
+    In your terminal (which should still be in the `frontend` directory), run:
+    ```bash
+    npm run dev
+    ```
+
+3.  **Open the application:**
+    The server will start, and you will see a message in the terminal. Open your browser and navigate to the local URL provided, which is typically:
+    > `http://localhost:5173`
+
+The application should now be running, and you can begin testing.
