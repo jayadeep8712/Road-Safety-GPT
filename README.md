@@ -118,11 +118,7 @@ B -->|7. Display ReportCard| A;
 
 
 
-<br>
-
 \## 🛠️ Tech Stack
-
-
 
 | Area     | Technology                              |
 
@@ -136,7 +132,9 @@ B -->|7. Display ReportCard| A;
 
 | Database | CSV file parsed with csv-parse          |
 
-<br>
+
+
+
 
 \## 🚀 Getting Started (Local Setup)
 
@@ -166,15 +164,11 @@ Follow these instructions to run the full-stack application locally.
 
 ```
 
-
-
 git clone https://github.com/jayadeep8712/Road-Safety-GPT.git
 
 
 
 cd road-safety-expert-system
-
-
 
 ```
 
@@ -190,11 +184,7 @@ cd road-safety-expert-system
 
 ```
 
-
-
 cd backend
-
-
 
 ```
 
@@ -206,11 +196,7 @@ cd backend
 
 ```
 
-
-
 npm install
-
-
 
 ```
 
@@ -226,11 +212,7 @@ npm install
 
 ```
 
-
-
 GEMINI\_API\_KEY="your-secret-api-key-here"
-
-
 
 ```
 
@@ -238,11 +220,7 @@ GEMINI\_API\_KEY="your-secret-api-key-here"
 
 \## \*\*3. Set Up the Frontend\*\*
 
-
-
 \### 1. Navigate to the frontend directory:
-
-
 
 ```
 
@@ -262,11 +240,7 @@ cd frontend
 
 ```
 
-
-
 npm install
-
-
 
 ```
 
@@ -286,11 +260,7 @@ Open two terminals:
 
 ```
 
-
-
 node server.js
-
-
 
 ```
 
@@ -306,11 +276,7 @@ You should see: `🚀 Backend server is running on http://localhost:3001`
 
 ```
 
-
-
 npm run dev
-
-
 
 ```
 
@@ -336,7 +302,7 @@ Open the provided URL, typically `http://localhost:5173`. <br>
 
 \* User Authentication \& History: Allow login and report history.
 
-
+---
 
 \*\*Developed by Team The Safe-T-Bytes\*\*
 
