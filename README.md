@@ -40,14 +40,27 @@ This project follows a decoupled, full-stack architecture.
 
 ```mermaid
 graph TD
-    A[User] --> B{React Frontend <br>on Port 5173}
-    B -->|1. POST Request with User Input| C{Node.js/Express Backend <br>on Port 3001}
-    C -->|2. Retrieve Relevant Docs <br>RAG| D[CSV Database]
-    D -->|3. Augment Prompt| C
-    C -->|4. Query with Context| E[Google Gemini AI]
+    A[User's Natural Language Query] --> B[React Frontend]
+    B -->|1. API Request| C[Node.js Backend]
+    
+    subgraph Backend["Backend RAG Pipeline"]
+        C1[2. Retrieve Relevant Docs<br/>Keyword Search] --> D[CSV Database]
+        D --> C2[3. Augment Prompt with<br/>Focused Context]
+    end
+    
+    C --> C1
+    C2 --> E[4. Query Google Gemini AI]
     E -->|5. Structured JSON Response| C
     C -->|6. Send Formatted Report| B
-    B -->|7. Display ReportCard| A
+    B --> G[7. Display Professional<br/>Report Card]
+    
+    style A fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style B fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style C fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style D fill:#e8e8e8,stroke:#333,stroke-width:2px
+    style E fill:#d0d0d0,stroke:#333,stroke-width:2px
+    style G fill:#f9f9f9,stroke:#333,stroke-width:2px
+    style Backend fill:#ffffff,stroke:#666,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
 ## 🛠️ Tech Stack
