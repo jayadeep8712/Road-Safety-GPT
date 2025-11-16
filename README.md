@@ -4,7 +4,7 @@ An AI-powered expert system designed to identify and recommend precise road safe
 
 ## 🚀 Live Demo
 
-**[Insert Your Deployed Vercel/Netlify URL Here]**
+**[road-safety-expert-system.vercel.app]**
 
 > **Note:** The backend may take a few seconds to "wake up" on the first request due to the cold start nature of serverless functions.
 
@@ -53,14 +53,17 @@ graph TD
     E -->|5. Structured JSON Response| C
     C -->|6. Send Formatted Report| B
     B --> G[7. Display Professional<br/>Report Card]
-    
-    style A fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style B fill:#f0f0f0,stroke:#333,stroke-width:2px
-    style C fill:#f0f0f0,stroke:#333,stroke-width:2px
-    style D fill:#e8e8e8,stroke:#333,stroke-width:2px
-    style E fill:#d0d0d0,stroke:#333,stroke-width:2px
-    style G fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style Backend fill:#ffffff,stroke:#666,stroke-width:2px,stroke-dasharray: 5 5
+
+    %% ---- PROFESSIONAL COLORS ----
+    style A fill:#ffffff,stroke:#1E3A8A,stroke-width:2px,color:#1E3A8A
+    style B fill:#EFF6FF,stroke:#1E40AF,stroke-width:2px,color:#1E40AF
+    style C fill:#DBEAFE,stroke:#1D4ED8,stroke-width:2px,color:#1D4ED8
+    style D fill:#BFDBFE,stroke:#1E40AF,stroke-width:2px,color:#1E3A8A
+    style E fill:#93C5FD,stroke:#1D4ED8,stroke-width:2px,color:#1E3A8A
+    style G fill:#ffffff,stroke:#1E3A8A,stroke-width:2px,color:#1E3A8A
+
+    %% Backend Group Style
+    style Backend fill:#F3F4F6,stroke:#1E40AF,stroke-width:2px,stroke-dasharray: 5 5,color:#1E3A8A
 ```
 
 ## 🛠️ Tech Stack
