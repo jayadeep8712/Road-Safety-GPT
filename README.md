@@ -164,4 +164,4 @@ This project is licensed under the MIT License.
 
 ## 👥 Team
 
-**Developed by Team The Safe-T-Bytes National Road Safety Hackathon 2025**
+**Developed by Team The Safe-T-Bytes [National Road Safety Hackathon 2025]**
