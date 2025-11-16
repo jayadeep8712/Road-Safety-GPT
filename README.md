@@ -4,9 +4,10 @@ An AI-powered expert system designed to identify and recommend precise road safe
 
 ## 🚀 Live Demo
 
-**[road-safety-expert-system.vercel.app]**
+> **Note:** The backend may take a few seconds to “wake up” on the first request due to the cold start behavior of serverless functions.
 
-> **Note:** The backend may take a few seconds to "wake up" on the first request due to the cold start nature of serverless functions.
+**Live App:** https://road-safety-expert-system.vercel.app
+
 
 ## 📝 Problem Statement
 
@@ -163,8 +164,4 @@ This project is licensed under the MIT License.
 
 ## 👥 Team
 
-**Developed by Team The Safe-T-Bytes**
-
----
-
-**National Road Safety Hackathon 2025**
+**Developed by Team The Safe-T-Bytes National Road Safety Hackathon 2025**
