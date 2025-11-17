@@ -45,7 +45,7 @@ const ReportCard = ({ data, onReset, isSharedView = false }) => {
     html2canvas(input, {
       scale: 2, // Higher scale for better resolution
       useCORS: true,
-      backgroundColor: null, // Use the actual background color
+      backgroundColor: null,  
     }).then((canvas) => {
       // Show the buttons again after the screenshot is taken
       if (shareButton) shareButton.style.display = 'flex';
@@ -71,14 +71,18 @@ const ReportCard = ({ data, onReset, isSharedView = false }) => {
       const x = (pdfWidth - finalImgWidth) / 2;
       const y = 10;
 
-      // Add Watermark
-      pdf.setFontSize(50);
-      pdf.setTextColor(235, 235, 235); // A light grey
-      pdf.text('Road Safety Expert System', pdfWidth / 2, pdfHeight / 2, { align: 'center', angle: -45 });
-
-      // Add the report image on top
       pdf.addImage(imgData, 'PNG', x, y, finalImgWidth, finalImgHeight);
-      pdf.save(`Road-Safety-Report-${data.s_no || 'details'}.pdf`);
+
+      // Add Watermark on top of image
+      pdf.setFontSize(60);
+      pdf.setTextColor(210, 210, 210); // A light grey
+      pdf.setGState(new pdf.GState({opacity: 0.5})); 
+      
+      pdf.text('RSES | Road Safety Expert System', pdfWidth / 2, pdfHeight / 2, { align: 'center', angle: -45 });
+
+      pdf.setGState(new pdf.GState({opacity: 1}));
+
+      pdf.save(`Road-Safety-Intervention-Report-${data.s_no || 'details'}.pdf`);
     });
   };
 
