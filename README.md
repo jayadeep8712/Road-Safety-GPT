@@ -1,6 +1,4 @@
-<h1 align="center">
 #🚦Road-Safety-Intervention-GPT
-</h1>
 
 <p align="center">
   <i><b>Analyze road safety issues with AI. Get expert recommendations from official guidelines.</i>
@@ -25,7 +23,7 @@
 
 <br/>
 
-An AI-powered expert system designed to identify and recommend precise road safety interventions based on natural language descriptions of hazardous conditions. This project was submitted for the **National Road Safety Hackathon 2025**.
+<i>An AI-powered expert system designed to identify and recommend precise road safety interventions based on natural language descriptions of hazardous conditions. This project was submitted for the **National Road Safety Hackathon 2025**.</i>
 
 <br/>
 
