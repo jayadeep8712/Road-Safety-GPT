@@ -8,12 +8,10 @@
   <img src="https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/TailwindCSS-3.4.3-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" />
-<div align="center">
   <img src="https://img.shields.io/badge/Express.js-4.18.2-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" />
   <img src="https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
   <img src="https://img.shields.io/badge/Render-Backend%20Hosting-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render" />
 </p>
-
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React Frontend" />
@@ -21,8 +19,7 @@
   <img src="https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini" />
 </p>
 
-
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
+---
 
 <br/>
 
@@ -35,7 +32,6 @@ An AI-powered expert system designed to identify and recommend precise road safe
 Road safety engineers, city planners, and even concerned citizens often face a significant challenge: identifying the correct, standards-compliant intervention for a specific safety issue. Manually searching through dense technical manuals (like IRC guidelines) is slow, inefficient, and prone to error. 
 
 This knowledge gap can delay the implementation of critical safety improvements, directly impacting public safety. Our project was designed to bridge this gap.
-
 
 <br/>
 
@@ -74,6 +70,7 @@ This knowledge gap can delay the implementation of critical safety improvements,
   </tr>
 </table>
 
+<br/>
 
 ## 🏗️ Architecture Diagram
 
@@ -95,23 +92,23 @@ graph TD
     C -->|6. Send Formatted Report| B
     B --> G[7. Display Professional<br/>Report Card]
 
-    %% ---- PROFESSIONAL COLORS ----
     style A fill:#ffffff,stroke:#1E3A8A,stroke-width:2px,color:#1E3A8A
     style B fill:#EFF6FF,stroke:#1E40AF,stroke-width:2px,color:#1E40AF
     style C fill:#DBEAFE,stroke:#1D4ED8,stroke-width:2px,color:#1D4ED8
     style D fill:#BFDBFE,stroke:#1E40AF,stroke-width:2px,color:#1E3A8A
     style E fill:#93C5FD,stroke:#1D4ED8,stroke-width:2px,color:#1E3A8A
     style G fill:#ffffff,stroke:#1E3A8A,stroke-width:2px,color:#1E3A8A
-
-    %% Backend Group Style
     style Backend fill:#F3F4F6,stroke:#1E40AF,stroke-width:2px,stroke-dasharray: 5 5,color:#1E3A8A
 ```
+
+<br/>
 
 ## 🛠️ Tech Stack & Architecture
 
 This project is built on a modern, decoupled full-stack architecture, leveraging best-in-class tools for each part of the application lifecycle.
 
 ### Core Technologies
+
 <div align="center">
   <p><strong>Frontend</strong></p>
   <img src="https://skillicons.dev/icons?i=react,vite,tailwind,html,css" alt="Frontend Stack" />
@@ -149,7 +146,7 @@ This project is built on a modern, decoupled full-stack architecture, leveraging
     </tr>
     <tr>
       <td>React Router DOM</td>
-      <td>Enabling client-side routing for shareable report pages (`/report`).</td>
+      <td>Enabling client-side routing for shareable report pages (<code>/report</code>).</td>
     </tr>
     <tr>
       <td rowspan="3"><b>Frontend Features</b></td>
@@ -199,7 +196,7 @@ This project is built on a modern, decoupled full-stack architecture, leveraging
   </tbody>
 </table>
 
-<br>
+<br/>
 
 ## 🚀 Getting Started (Local Setup)
 
@@ -220,21 +217,21 @@ cd road-safety-expert-system
 
 ### 2. Set Up the Backend
 
-#### Navigate to the backend directory:
+**Navigate to the backend directory:**
 
 ```bash
 cd backend
 ```
 
-#### Install dependencies:
+**Install dependencies:**
 
 ```bash
 npm install
 ```
 
-#### Create a `.env` file in the backend directory
+**Create a `.env` file in the backend directory**
 
-#### Add your Gemini API key:
+**Add your Gemini API key:**
 
 ```env
 GEMINI_API_KEY="your-secret-api-key-here"
@@ -242,13 +239,13 @@ GEMINI_API_KEY="your-secret-api-key-here"
 
 ### 3. Set Up the Frontend
 
-#### Navigate to the frontend directory:
+**Navigate to the frontend directory:**
 
 ```bash
 cd frontend
 ```
 
-#### Install dependencies:
+**Install dependencies:**
 
 ```bash
 npm install
@@ -258,7 +255,7 @@ npm install
 
 Open two terminals:
 
-#### Terminal 1 - Start the Backend
+**Terminal 1 - Start the Backend**
 
 ```bash
 cd backend
@@ -267,7 +264,7 @@ node server.js
 
 You should see: `🚀 Backend server is running on http://localhost:3001`
 
-#### Terminal 2 - Start the Frontend
+**Terminal 2 - Start the Frontend**
 
 ```bash
 cd frontend
@@ -275,11 +272,12 @@ npm run dev
 ```
 
 <div align="center">
+
 ### 🎉 That's it! Open http://localhost:5173
+
 </div>
 
 <br/>
-
 
 ## 🚀 Live Demo
 
@@ -287,6 +285,7 @@ npm run dev
 
 *(**Note:** The backend is hosted on Render's free tier and may take up to 60 seconds to "wake up" on the first request if it has been inactive.)*
 
+<br/>
 
 ## 🤝 Contributing
 
@@ -321,11 +320,13 @@ all contributions are welcome and appreciated.
 
 If this project helped you, please consider giving it a ⭐!
 
-<a href="https://github.com/jayadeep8712/Road-Safety-GPT.git">
+<a href="https://github.com/jayadeep8712/Road-Safety-GPT">
   <img src="https://img.shields.io/github/stars/jayadeep8712/Road-Safety-GPT?style=social" alt="Stars" />
 </a>
 
 </div>
+
+<br/>
 
 ## 📄 License
 
@@ -335,16 +336,16 @@ This project is licensed under the **MIT License**
 
 </div>
 
+---
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
-
 <br/>
 
-**[⬆](#-road-safety-expert-system)**
+**[⬆ Back to Top](#-road-safety-intervention-gpt)**
 
 <br/>
 
 <sub>Built with React • Powered by AI • Deployed on Vercel</sub>
 
+</div>
