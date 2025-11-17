@@ -46,7 +46,6 @@ function App() {
     setResult(null);
     setError('');
     
-    // Clear the textarea value as well
     const textarea = document.querySelector('textarea');
     if (textarea) {
         const nativeTextAreaValueSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value').set;
@@ -55,7 +54,6 @@ function App() {
         textarea.dispatchEvent(event);
     }
 
-    // Scroll back to the input form
     inputSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
@@ -87,7 +85,6 @@ function App() {
 
       <div className="relative z-10">
         <Header />
-        
         <main className="container mx-auto px-4 py-12">
           {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center mb-16">
@@ -120,10 +117,6 @@ function App() {
               
               {/* Main card */}
               <div className="relative bg-white border-2 border-black rounded-3xl shadow-2xl p-8 md:p-12">
-                {/* Decorative corner elements */}
-                <div className="absolute top-6 right-6 w-4 h-4 bg-black opacity-20 rounded-full"></div>
-                <div className="absolute bottom-6 left-6 w-4 h-4 bg-black opacity-20 rounded-full"></div>
-                
                 <div className="mb-8">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center text-2xl transform -rotate-3">
@@ -227,10 +220,6 @@ function App() {
                   <div className="p-8">
                     <ReportCard data={result} onReset={handleReset} />
                   </div>
-                  
-                  {/* Decorative corners */}
-                  <div className="absolute top-20 right-6 w-3 h-3 bg-black opacity-20 rounded-full"></div>
-                  <div className="absolute bottom-6 left-6 w-3 h-3 bg-black opacity-20 rounded-full"></div>
                 </div>
               </div>
             )}
@@ -362,7 +351,6 @@ function App() {
           )}
         </main>
 
-        {/* Footer */}
         <footer className="mt-24 py-8 border-t border-gray-200">
           <div className="container mx-auto px-4 text-center">
             <p className="text-gray-500 text-sm">

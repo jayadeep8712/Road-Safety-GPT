@@ -10,7 +10,7 @@ const InputForm = ({ onAnalyze, isLoading }) => {
   const [inputText, setInputText] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents the form from reloading the page
+    e.preventDefault();  
     if (!inputText.trim()) {
       alert("Please describe a road safety issue.");
       return;

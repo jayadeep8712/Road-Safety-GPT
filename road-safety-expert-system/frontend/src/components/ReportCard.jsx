@@ -1,11 +1,13 @@
+// ReportCard.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ShareModal from './ShareModal';
 
-const ReportCard = ({ data, onReset }) => {
+const ReportCard = ({ data, onReset, isSharedView = false }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const renderExplanation = (text) => {
-    // A small safety check in case the explanation is not a string
     if (typeof text !== 'string') return null; 
 
     return text.split('\n').map((item, index) => {
@@ -16,83 +18,139 @@ const ReportCard = ({ data, onReset }) => {
       return null;
     });
   };
+
+  const handleAction = () => {
+    if (isSharedView) {
+      navigate('/app');
+    } else if (onReset) {
+      onReset();
+    }
+  };
   
   return (
     <> 
-      <div key={data.referenceClause} className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 animate-fade-in">
+      <div key={data.referenceClause} className="relative">
+        {/* Background layer */}
+        <div className="absolute inset-0 bg-gray-50 rounded-3xl transform -rotate-1"></div>
         
-        {/* Share Button Container */}
-        <div className="flex justify-between items-start mb-4 border-b border-gray-200 pb-4">
-            <h2 className="text-3xl font-bold text-brand-dark tracking-tight">
-              Intervention Report
-            </h2>
+        {/* Main card */}
+        <div className="relative bg-white border-2 border-black rounded-3xl shadow-2xl p-8 md:p-10">
+          {/* Decorative corners */}
+          <div className="absolute top-6 right-6 w-3 h-3 bg-black opacity-20 rounded-full"></div>
+          <div className="absolute bottom-6 left-6 w-3 h-3 bg-black opacity-20 rounded-full"></div>
+          
+          {/* Header with Share Button */}
+          <div className="flex justify-between items-start mb-6 pb-6 border-b-2 border-gray-200">
+            <div>
+              <h2 className="text-4xl font-bold text-black tracking-tight mb-2">
+                Intervention Report
+              </h2>
+              <p className="text-gray-500 text-sm">AI-Generated Safety Analysis</p>
+            </div>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="ml-4 flex-shrink-0 bg-brand-blue/10 text-brand-blue font-semibold py-2 px-4 rounded-lg hover:bg-brand-blue/20 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"
+              className="ml-4 flex-shrink-0 bg-black text-white font-semibold py-3 px-6 rounded-xl hover:bg-gray-800 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 flex items-center gap-2"
             >
-              Share ↗
+              <span>Share</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
             </button>
-        </div>
+          </div>
 
-        <p className="mb-6 text-gray-600 italic">
-          "{data.greeting}"
-        </p>
+          {/* Greeting */}
+          <div className="mb-8 p-4 bg-gray-50 border-l-4 border-black rounded-lg">
+            <p className="text-gray-700 italic text-lg">
+              "{data.greeting}"
+            </p>
+          </div>
 
-        <div className="space-y-6">
+          {/* Content Sections */}
+          <div className="space-y-8">
             <div>
-                <h3 className="text-lg font-semibold text-brand-dark mb-2">Problem Identified</h3>
-                <p className="text-gray-700 bg-gray-50 p-4 rounded-lg shadow-inner">{data.problemIdentified}</p>
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="text-xl font-bold text-black">Problem Identified</h3>
+              </div>
+              <p className="text-gray-700 bg-gray-50 p-5 rounded-xl border border-gray-200 leading-relaxed">
+                {data.problemIdentified}
+              </p>
             </div>
-            <div>
-                <h3 className="text-lg font-semibold text-brand-dark mb-2">Recommended Intervention</h3>
-                <p className="text-gray-700 bg-gray-50 p-4 rounded-lg shadow-inner">{data.intervention}</p>
-            </div>
-            <div>
-                <h3 className="text-lg font-semibold text-brand-dark mb-2">Detailed Explanation</h3>
-                <ul className="list-disc list-inside text-gray-600 space-y-2 bg-gray-50 p-4 rounded-lg shadow-inner">
-                  {renderExplanation(data.explanation)}
-                </ul>
-            </div>
-        </div>
 
-        <div className="mt-8 pt-4 border-t border-gray-200 text-sm text-gray-500">
-            <p className="font-bold">Official Reference:</p>
-            <div className="flex items-center space-x-4 mt-2">
-              <p>Code: <span className="font-mono bg-gray-200 text-gray-800 px-2 py-1 rounded">{data.referenceCode}</span></p>
-              <p>Clause: <span className="font-mono bg-gray-200 text-gray-800 px-2 py-1 rounded">{data.referenceClause}</span></p>
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="text-xl font-bold text-black">Recommended Intervention</h3>
+              </div>
+              <p className="text-gray-700 bg-gray-50 p-5 rounded-xl border border-gray-200 leading-relaxed">
+                {data.intervention}
+              </p>
             </div>
+
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="text-xl font-bold text-black">Detailed Explanation</h3>
+              </div>
+              <ul className="list-disc list-inside text-gray-700 space-y-2 bg-gray-50 p-5 rounded-xl border border-gray-200">
+                {renderExplanation(data.explanation)}
+              </ul>
+            </div>
+          </div>
+
+          {/* Official Reference */}
+          <div className="mt-8 pt-6 border-t-2 border-gray-200">
+            <p className="font-bold text-black mb-3 flex items-center gap-2">
+              <span className="text-xl">📚</span>
+              Official Reference
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <div className="bg-gray-100 px-4 py-2 rounded-lg border border-gray-300">
+                <span className="text-gray-600 text-sm">Code:</span>
+                <span className="font-mono font-bold text-black ml-2">{data.referenceCode}</span>
+              </div>
+              <div className="bg-gray-100 px-4 py-2 rounded-lg border border-gray-300">
+                <span className="text-gray-600 text-sm">Clause:</span>
+                <span className="font-mono font-bold text-black ml-2">{data.referenceClause}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-    <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-      <button
-        onClick={onReset}
-        className="group relative w-full md:w-auto inline-flex items-center justify-center gap-3 bg-black text-white font-semibold text-base py-4 px-10 rounded-2xl hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        <span className="relative">Start New Analysis</span>
-        
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          strokeWidth={2.5} 
-          stroke="currentColor" 
-          className="relative w-5 h-5 transition-transform duration-300 group-hover:rotate-180"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" 
-          />
-        </svg>
-      </button>
-      
-      <p className="text-gray-500 text-sm mt-4">
-        Click to analyze another road safety issue
-      </p>
-    </div>
+      {/* Action Button - Only show if onReset exists or is shared view */}
+      {(onReset || isSharedView) && (
+        <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+          <button
+            onClick={handleAction}
+            className="group relative w-full md:w-auto inline-flex items-center justify-center gap-3 bg-black text-white font-semibold text-base py-4 px-10 rounded-2xl hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            <span className="relative">
+              {isSharedView ? 'Try Your Own Analysis' : 'Start New Analysis'}
+            </span>
+            
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              strokeWidth={2.5} 
+              stroke="currentColor" 
+              className="relative w-5 h-5 transition-transform duration-300 group-hover:rotate-180"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" 
+              />
+            </svg>
+          </button>
+          
+          <p className="text-gray-500 text-sm mt-4">
+            {isSharedView 
+              ? 'Navigate to home to analyze other road safety issues' 
+              : 'Click to analyze another road safety issue'}
+          </p>
+        </div>
+      )}
 
       {isModalOpen && <ShareModal data={data} onClose={() => setIsModalOpen(false)} />}
     </>
