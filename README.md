@@ -1,5 +1,5 @@
 <h1 align="center">
-🚦Road-Safety-Intervention-GPT
+#🚦Road-Safety-Intervention-GPT
 </h1>
 
 <p align="center">
@@ -346,10 +346,6 @@ This project is licensed under the **MIT License**
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
 
 <div align="center">
-
-<br/>
-
-**[⬆ Back to Top](#-road-safety-intervention-gpt)**
 
 <br/>
 
