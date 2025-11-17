@@ -1,4 +1,8 @@
-#🚦Road-Safety-Intervention-GPT
+
+<h1 align="center">
+🚦
+Road-Safety-Intervention-GPT
+</h1>
 
 <p align="center">
   <i><b>Analyze road safety issues with AI. Get expert recommendations from official guidelines.</i>
