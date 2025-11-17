@@ -9,7 +9,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { parse } = require('csv-parse/sync');
 
 const app = express();
-const PORT = 3001; // Backend will run on this port
+const PORT = 3001;  
 
 // --- Middleware ---
 app.use(cors()); // Allows requests from your frontend (on port 5173)
@@ -37,7 +37,7 @@ const database = parse(fileContent, {
 });
 
 console.log(`✅ Database loaded: ${database.length} records parsed.`);
-console.log('First two records for verification:', database.slice(0, 5));
+console.log('First three records for verification:', database.slice(0, 3));
 
 // --- Gemini AI Setup ---
 if (!process.env.GEMINI_API_KEY) {
@@ -118,6 +118,47 @@ USER'S PROBLEM: "${userInput}"`;
     res.status(500).json({ error: 'An internal server error occurred on the backend.' });
   }
 });
+
+
+app.post('/api/create-share', async (req, res) => {
+  console.log("➡️  Received request to create share link");
+  try {
+    const reportData = req.body; // This is the full JSON report from the frontend
+
+    if (!reportData || !reportData.problemIdentified) {
+      return res.status(400).json({ error: 'Invalid report data provided to create a share link.' });
+    }
+
+    // Your server now acts as a proxy and makes the request to JSONBlob
+    const response = await fetch('https://jsonblob.com/api/jsonBlob', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(reportData),
+    });
+
+    if (!response.ok) {
+      // Log the error from JSONBlob for debugging
+      const errorBody = await response.text();
+      console.error(`JSONBlob API Error: ${response.status} - ${errorBody}`);
+      throw new Error('Failed to upload report data to JSONBlob.');
+    }
+
+    const blobUrl = response.headers.get('Location');
+    const blobId = blobUrl.split('/').pop();
+
+    console.log(`✅ Successfully created share link with ID: ${blobId}`);
+    // Send just the unique ID back to the frontend
+    res.status(200).json({ shareId: blobId });
+
+  } catch (error) {
+    console.error('❌ Error creating share link:', error);
+    res.status(500).json({ error: 'Failed to create the shareable link.' });
+  }
+});
+
 
 // --- Start Server ---
 app.listen(PORT, () => {

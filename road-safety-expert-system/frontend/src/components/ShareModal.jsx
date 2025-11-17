@@ -20,8 +20,8 @@ const ShareModal = ({ data, onClose }) => {
     const createShareableLink = async () => {
       setIsLoading(true);
       try {
-        // Step 1: Upload the full report data to JSONBlob's free API.
-        const response = await fetch('https://jsonblob.com/api/jsonBlob', {
+        // We now send the data to our OWN backend proxy endpoint.
+        const response = await fetch('https://road-safety-gpt-backend.onrender.com/api/create-share', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -31,25 +31,20 @@ const ShareModal = ({ data, onClose }) => {
         });
 
         if (!response.ok) {
-          throw new Error('Failed to upload report data to create a shareable link.');
+          throw new Error('Failed to create a shareable link via our backend.');
         }
 
-        // Step 2: The unique ID of our stored data is in the 'Location' response header.
-        const blobUrl = response.headers.get('Location');
-        // Extract the ID from the full URL (e.g., https://jsonblob.com/api/jsonBlob/UNIQUE_ID -> UNIQUE_ID)
-        const blobId = blobUrl.split('/').pop();
+        // Our backend now sends back a JSON with the ID
+        const { shareId } = await response.json(); 
 
-        // Step 3: Create our new, short, and clean shareable URL.
-        const newShareUrl = `${window.location.origin}/report?id=${blobId}`;
+        const newShareUrl = `${window.location.origin}/report?id=${shareId}`;
         setShareUrl(newShareUrl);
 
-        // Step 4: Generate the QR code using this new, short URL. This will no longer fail.
         const dataUrl = await QRCode.toDataURL(newShareUrl, { width: 256, margin: 2 });
         setQrCodeDataUrl(dataUrl);
 
       } catch (err) {
         console.error('Failed to create shareable link:', err);
-        // We can add an error state here if needed
       } finally {
         setIsLoading(false);
       }
@@ -78,7 +73,7 @@ const ShareModal = ({ data, onClose }) => {
         <p className="text-gray-500 mb-6">Anyone with this link or QR code can view this report.</p>
         
         <div className="flex justify-center items-center p-4 bg-gray-100 rounded-lg h-72 w-72 mx-auto">
-          {/* --- NEW: Show a loading message during the upload --- */}
+  
           {isLoading ? (
             <p className="text-gray-500 animate-pulse">Generating secure link...</p>
           ) : qrCodeDataUrl ? (
