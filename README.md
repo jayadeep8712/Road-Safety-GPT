@@ -1,8 +1,10 @@
-# 🚦 Road-Safety-Intervention-GPT
+<h1 align="center">
+🚦Road-Safety-Intervention-GPT
+</h1>
 
 <p align="center">
-  <i>Analyze road safety issues with AI. Get expert recommendations from official guidelines.</i>
-</p>
+  <i><b>Analyze road safety issues with AI. Get expert recommendations from official guidelines.</i>
+</b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
@@ -19,7 +21,7 @@
   <img src="https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini" />
 </p>
 
----
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
 
 <br/>
 
@@ -70,7 +72,9 @@ This knowledge gap can delay the implementation of critical safety improvements,
   </tr>
 </table>
 
+
 <br/>
+
 
 ## 🏗️ Architecture Diagram
 
@@ -101,7 +105,9 @@ graph TD
     style Backend fill:#F3F4F6,stroke:#1E40AF,stroke-width:2px,stroke-dasharray: 5 5,color:#1E3A8A
 ```
 
+
 <br/>
+
 
 ## 🛠️ Tech Stack & Architecture
 
@@ -118,7 +124,9 @@ This project is built on a modern, decoupled full-stack architecture, leveraging
   <img src="https://skillicons.dev/icons?i=vercel,render,git,github,vscode,npm" alt="Deployment & Tools" />
 </div>
 
+
 <br/>
+
 
 ### Detailed Breakdown
 
@@ -196,7 +204,9 @@ This project is built on a modern, decoupled full-stack architecture, leveraging
   </tbody>
 </table>
 
+
 <br/>
+
 
 ## 🚀 Getting Started (Local Setup)
 
@@ -277,7 +287,9 @@ npm run dev
 
 </div>
 
+
 <br/>
+
 
 ## 🚀 Live Demo
 
@@ -306,13 +318,9 @@ all contributions are welcome and appreciated.
 4. **Push** to the branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
-<div align="center">
-
-**Read our [Contributing Guidelines](CONTRIBUTING.md) for more details**
-
-</div>
 
 <br/>
+
 
 ## 🌟 Show Your Support
 
@@ -323,7 +331,6 @@ If this project helped you, please consider giving it a ⭐!
 <a href="https://github.com/jayadeep8712/Road-Safety-GPT">
   <img src="https://img.shields.io/github/stars/jayadeep8712/Road-Safety-GPT?style=social" alt="Stars" />
 </a>
-
 </div>
 
 <br/>
@@ -336,7 +343,7 @@ This project is licensed under the **MIT License**
 
 </div>
 
----
+<img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" width="100%" />
 
 <div align="center">
 
