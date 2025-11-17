@@ -169,7 +169,6 @@ const ReportCard = ({ data, onReset, isSharedView = false }) => {
           {/* Official Reference */}
           <div className="mt-8 pt-6 border-t-2 border-gray-200">
             <p className="font-bold text-black mb-3 flex items-center gap-2">
-              <span className="text-xl">📚</span>
               Official Reference
             </p>
             <div className="flex flex-wrap gap-4">
