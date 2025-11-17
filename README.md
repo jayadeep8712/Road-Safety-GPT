@@ -121,7 +121,7 @@ This project is built on a modern, decoupled full-stack architecture, leveraging
   <p><strong>Backend & AI</strong></p>
   <img src="https://skillicons.dev/icons?i=nodejs,express,js,googlecloud" alt="Backend & AI Stack" />
   <p><strong>Deployment & Tools</strong></p>
-  <img src="https://skillicons.dev/icons?i=vercel,render,git,github,vscode,npm" alt="Deployment & Tools" />
+  <img src="https://skillicons.dev/icons?i=vercel,git,github,vscode,npm" alt="Deployment & Tools" />
 </div>
 
 
