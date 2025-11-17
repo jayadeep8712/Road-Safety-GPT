@@ -1,7 +1,7 @@
 
 <h1 align="center">
-🚦
-Road-Safety-Intervention-GPT
+<div>🚦</div>
+<div> Road-Safety-Intervention-GPT </div>
 </h1>
 
 <p align="center">
