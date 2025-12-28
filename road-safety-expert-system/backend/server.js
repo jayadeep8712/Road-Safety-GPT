@@ -127,18 +127,10 @@ USER'S PROBLEM: "${userInput}"`;
     try {
       result = await model.generateContent(masterPrompt);
     } catch (err) {
-      if (err.status === 429) {
-        return res.status(429).json({
-          type: "RATE_LIMIT",
-          message:
-            "AI is temporarily busy. Please wait 30–60 seconds and try again.",
-        });
-      }
-
+      // For any AI API error (quota, rate limit, etc.), show friendly message
       console.error("❌ Gemini Error:", err);
-      return res.status(500).json({
-        type: "AI_ERROR",
-        message: "AI service failed. Please try again later.",
+      return res.status(503).json({
+        error: "The AI service is currently busy due to high usage. Please try again in a few moments."
       });
     }
     
@@ -155,7 +147,9 @@ USER'S PROBLEM: "${userInput}"`;
     return res.status(200).json(jsonResponse);
   } catch (error) {
     console.error('❌ Error in /api/generate-report:', error);
-    return res.status(500).json({ error: 'An unexpected error occurred.' });
+    return res.status(500).json({ 
+      error: 'The AI service is currently busy due to high usage. Please try again in a few moments.' 
+    });
   }
 });
 
