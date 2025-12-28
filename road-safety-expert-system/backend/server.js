@@ -65,6 +65,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // --- API Endpoint ---
 app.post('/api/generate-report', async (req, res) => {
   console.log("➡️ Request Received");
+  
   try {
     const { userInput } = req.body;
     if (!userInput || userInput.trim().length < 10) {
@@ -148,10 +149,14 @@ USER'S PROBLEM: "${userInput}"`;
       jsonResponse = JSON.parse(cleanedJsonString);
     } catch (e) {
       return res.status(500).json({
-       error: "AI returned invalid JSON. Please try again."
-    });
-  }
+        error: "AI returned invalid JSON. Please try again."
+      });
+    }
     return res.status(200).json(jsonResponse);
+  } catch (error) {
+    console.error('❌ Error in /api/generate-report:', error);
+    return res.status(500).json({ error: 'An unexpected error occurred.' });
+  }
 });
 
 // --- Share Link API---
