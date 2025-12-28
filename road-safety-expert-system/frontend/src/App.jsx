@@ -23,20 +23,19 @@ function App() {
         },
         body: JSON.stringify({ userInput: inputText }),
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
+      
       const data = await response.json();
+      
       if (data.error) {
         setError(data.error);
+      } else if (!response.ok) {
+        setError('Failed to get a response from the server. Please try again.');
       } else {
         setResult(data);
       }
     } catch (err) {
       console.error('Fetch error:', err);
-      setError('Failed to get a response from the server. Please try again.');
+      setError('Unable to connect to the server. Please check your internet connection and try again.');
     } finally {
       setIsLoading(false);
     }
