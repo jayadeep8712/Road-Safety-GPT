@@ -22,14 +22,18 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+      return callback(new Error("Not allowed by CORS"), false);
     }
     return callback(null, true);
   }
 }));
 
 app.use(express.json());  
+
+// --- HEALTH CHECK ---
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 // --- Database Loading ---
 const filePath = path.resolve(__dirname, 'road_safety_interventions.csv');
@@ -39,46 +43,42 @@ const fileContent = fs.readFileSync(filePath, 'utf8');
 const database = parse(fileContent, {
     columns: true,  
     skip_empty_lines: true,
-    on_record: (record) => {
-        return {
-            s_no: record['S. No.'],
-            problem: record.problem,
-            category: record.category,
-            type: record.type,
-            data: record.data,
-            code: record.code,
-            clause: record.clause
-        };
-    }
+    on_record: (record) => ({
+      s_no: record['S. No.'],
+      category: record.category,
+      type: record.type,
+      data: record.data,
+      code: record.code,
+      clause: record.clause,
+      problem: record.problem,
+   }),
 });
 
-console.log(`✅ Database loaded: ${database.length} records parsed.`);
-console.log('First two records for verification:', database.slice(0, 2));
+console.log(`✅ Database loaded: ${database.length} records`);
 
 // --- Gemini AI Setup ---
 if (!process.env.GEMINI_API_KEY) {
-    throw new Error("GEMINI_API_KEY is not set in the .env file.");
+    throw new Error("❌ GEMINI_API_KEY missing in .env");
 }
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // --- API Endpoint ---
 app.post('/api/generate-report', async (req, res) => {
-  console.log("➡️  Received request to /api/generate-report");
+  console.log("➡️ Request Received");
   try {
     const { userInput } = req.body;
     if (!userInput || userInput.trim().length < 10) {
-        return res.status(400).json({ error: 'Please provide a more detailed description.' });
+        return res.status(400).json({ error: 'Please provide a more detailed road safety issue.' });
     }
     
-    const lowerUserInput = userInput.toLowerCase();
-    const keywords = lowerUserInput.split(/\s+/).filter(word => word.length > 3);
+    const keywords = userInput.toLowerCase().replace(/[^a-z\s]/g, "").split(/\s+/).filter(word => word.length > 3);
     const relevantDocs = database.filter(doc => {
       const searchableText = `${doc.problem} ${doc.category} ${doc.type}`.toLowerCase();
       return keywords.some(keyword => searchableText.includes(keyword));
     });
 
     if (relevantDocs.length === 0) {
-        return res.status(200).json({ error: "No relevant interventions found in the database. Please rephrase." });
+        return res.status(200).json({ error: "No matching intervention found. Please rephrase with more specific road details." });
     }
 
     const context = relevantDocs.map(doc => `Record S.No.: ${doc.s_no}\nProblem: ${doc.problem}\nType: ${doc.type}\nData: ${doc.data}\nCode: ${doc.code}\nClause: ${doc.clause}`).join('\n---\n');
@@ -120,22 +120,41 @@ ${context}
 
 USER'S PROBLEM: "${userInput}"`;
     
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-    const result = await model.generateContent(masterPrompt);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    let result;
+    
+    try {
+      result = await model.generateContent(masterPrompt);
+    } catch (err) {
+      if (err.status === 429) {
+        return res.status(429).json({
+          type: "RATE_LIMIT",
+          message:
+            "AI is temporarily busy. Please wait 30–60 seconds and try again.",
+        });
+      }
+
+      console.error("❌ Gemini Error:", err);
+      return res.status(500).json({
+        type: "AI_ERROR",
+        message: "AI service failed. Please try again later.",
+      });
+    }
+    
     const responseText = result.response.text();
     const cleanedJsonString = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
-    const jsonResponse = JSON.parse(cleanedJsonString);
-    
-    console.log("✅ Successfully generated AI response.");
-    res.status(200).json(jsonResponse);
-
-  } catch (error) {
-    console.error('❌ API Handler Error:', error);
-    res.status(500).json({ error: 'An internal server error occurred on the backend.' });
+    let jsonResponse;
+    try {
+      jsonResponse = JSON.parse(cleanedJsonString);
+    } catch (e) {
+      return res.status(500).json({
+       error: "AI returned invalid JSON. Please try again."
+    });
   }
+    return res.status(200).json(jsonResponse);
 });
 
-
+// --- Share Link API---
 app.post('/api/create-share', async (req, res) => {
   console.log("➡️  Received request to create share link");
   try {
